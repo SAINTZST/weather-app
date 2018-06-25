@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/SAINTZST/weather-app/issues"
   },
-  "homepage": "https://github.com/SAINTZST/weather-app#readme"
+  "homepage": "https://github.com/SAINTZST/weather-app#readme",
+  "dependencies": {
+    "request": "^2.87.0"
+  }
 }
