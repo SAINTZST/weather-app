@@ -1,0 +1,19 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Learning Asynchronous in Node.js * Make asynchronous http request * Fetch data from APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SAINTZST/weather-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SAINTZST/weather-app/issues"
+  },
+  "homepage": "https://github.com/SAINTZST/weather-app#readme"
+}
