@@ -1,43 +1,32 @@
-// const request = require('request')
-// const yargs = require('yargs')
-// const geocode = require('./geocode/geocode')
+const yargs = require('yargs')
 
-// const argv = yargs
-//     .options({
-//         a: {
-//             demand: true,
-//             alias: 'address',
-//             description: 'Address to fetch weather',
-//             string: true
-//         }
-//     })
-//     .help()
-//     .alias('help', 'h')
-//     .argv
+const geocode = require('./geocode/geocode')
+const weather = require('./weather/weather')
 
-// geocode.geocodeAddress(argv.a, (errorMessage, results) => {
-//     if (errorMessage) {
-//         console.log(errorMessage)
-//     } else {
-//         console.log(JSON.stringify(results, undefined, 2))
-//     }
-// })
+const argv = yargs
+    .options({
+        a: {
+            demand: true,
+            alias: 'address',
+            description: 'Address to fetch weather',
+            string: true
+        }
+    })
+    .help()
+    .alias('help', 'h')
+    .argv
 
-//5120ec19a4c30bb4734dfff1c4b0d444
-
-const request = require('request')
-
-request({
-    url: 'https://api.darksky.net/forecast/5120ec19a4c30bb4734dfff1c4b0d444/13.5990961,100.5998319',
-    json: true
-}, (error, response, body) => {
-
-    if (error) {
-        console.log('Unable to connect to darksky.net')
-    } else if (body.code === 400) {
-        console.log()
-        console.log(`Unable to fetch weather: ${body.error}`)
+geocode.geocodeAddress(argv.a, (errorMessage, results) => {
+    if (errorMessage) {
+        console.log(errorMessage)
     } else {
-        console.log(body.currently.temperature)
+        console.log(results.address)
+        weather.getWeather(results.latitude, results.longitude, (errorMessage, result) => {
+            if (errorMessage) {
+                console.log(errorMessage)
+            } else {
+                console.log(`It's currently ${result.temperature} but it feel like ${result.apparentTemperature}`)
+            }
+        })
     }
 })
